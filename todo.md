@@ -35,22 +35,22 @@ All items must be executed in order unless explicitly tagged as parallel-safe. U
 - [x] 2.9 Capture PR summary referencing RFC-001 and attach test evidence.
 
 ## 3. RFC-002 — Transactional FS Patch & Diff3 (PR: "feat: harden fs patch transactional writes")
-- [ ] 3.1 Review `packages/fs-patch/src/index.ts` for duplicated imports/options introduced by manual merge; deduplicate (`import os` appears twice) before integrating.
-- [ ] 3.2 Integrate new options (`allowCreate`, `allowDelete`, `lock`, `allowConflictMerge`, diff3) with defensive defaults; ensure TypeScript interfaces remain backwards compatible.
-- [ ] 3.3 Validate `diff3Merge` implementation: port `src/diff3.ts`, ensure exported signatures include conflict counts, and add unit coverage (`diff3.test.ts`).
-- [ ] 3.4 Ensure CLI (`bin/claude-fs-apply-patch.ts`) exposes new flags (`--lock`, `--allow-conflict-merge`, `--base`) with help text.
-- [ ] 3.5 Confirm transactional path writes behave on Windows (use temp file rename fallback) and locks handle stale lock files; document behavior edges in code comments if missing.
-- [ ] 3.6 Run tests: `npm -w packages/fs-patch run build`; `node --test dist/test/*.js`; add manual smoke by applying `examples/patches/readme.patch` to `examples/project/README.md`.
-- [ ] 3.7 Update docs (`docs/rhpv.md`) to mention new flags and diff3 capability.
-- [ ] 3.8 Include PR risk assessment explaining lock + conflict merge semantics.
+- [x] 3.1 Review `packages/fs-patch/src/index.ts` for duplicated imports/options introduced by manual merge; deduplicate (`import os` appears twice) before integrating.
+- [x] 3.2 Integrate new options (`allowCreate`, `allowDelete`, `lock`, `allowConflictMerge`, diff3) with defensive defaults; ensure TypeScript interfaces remain backwards compatible.
+- [x] 3.3 Validate `diff3Merge` implementation: port `src/diff3.ts`, ensure exported signatures include conflict counts, and add unit coverage (`diff3.test.ts`).
+- [x] 3.4 Ensure CLI (`bin/claude-fs-apply-patch.ts`) exposes new flags (`--lock`, `--allow-conflict-merge`, `--base`) with help text.
+- [x] 3.5 Confirm transactional path writes behave on Windows (use temp file rename fallback) and locks handle stale lock files; document behavior edges in code comments if missing.
+- [x] 3.6 Run tests: `npm -w packages/fs-patch run build`; `node --test dist/test/*.js`; add manual smoke by applying `examples/patches/readme.patch` to `examples/project/README.md`.
+- [x] 3.7 Update docs (`docs/rhpv.md`) to mention new flags and diff3 capability.
+- [x] 3.8 Include PR risk assessment explaining lock + conflict merge semantics.
 
 ## 4. RFC-003 — Shell Runner Enhancements (PR: "feat: add resilient shell fallback routing")
-- [ ] 4.1 Diff `packages/shell-runner/src/*.ts`; integrate error handling that surfaces ENOENT with actionable messaging.
-- [ ] 4.2 Audit new helper `tryPowershellExe` for dead code; either integrate into fallback path or drop to avoid unused exports.
-- [ ] 4.3 Ensure options object merges respect existing API; add tests covering shell fallback order (`bash`→`pwsh`→`cmd`).
-- [ ] 4.4 Confirm new behavior documented (README / docs) to set expectations for fallback and error messaging.
-- [ ] 4.5 Run targeted builds/tests for package and simulate absence of default shells (mock spawn) if feasible.
-- [ ] 4.6 Draft PR summary referencing RFC-003 with platform coverage notes.
+- [x] 4.1 Diff `packages/shell-runner/src/*.ts`; integrate error handling that surfaces ENOENT with actionable messaging.
+- [x] 4.2 Audit new helper `tryPowershellExe` for dead code; either integrate into fallback path or drop to avoid unused exports.
+- [x] 4.3 Ensure options object merges respect existing API; add tests covering shell fallback order (`bash`→`pwsh`→`cmd`).
+- [x] 4.4 Confirm new behavior documented (README / docs) to set expectations for fallback and error messaging.
+- [x] 4.5 Run targeted builds/tests for package and simulate absence of default shells (mock spawn) if feasible.
+- [x] 4.6 Draft PR summary referencing RFC-003 with platform coverage notes.
 
 ## 5. RFC-004 — Stream Checkpoints Validation (PR: "feat: strengthen stream checkpoint schema validation")
 - [ ] 5.1 Integrate `schema.d.ts` generation; ensure `npm run gen:types` produces deterministic output (watch for newline differences across OS).

@@ -79,3 +79,21 @@
 - `npm -w packages/cli-extras run build` пока падает (не найдены типы `@claude/fs-patch`, `@claude/permissions-linter`); ожидаемо из-за незавершённых задач §3/§4.
 - `claude-guard` (empty diff while файлы не в git): pass, findings=0.
 - Черновик PR (RFC-001): добавлены диагностические коды Bash, gitignore matching, CLI `normalize/risk`, обновлены tests/docs; тесты (`npm -w packages/permissions-linter run build`, `node --test dist/test/*.js`), команды lint/normalize по sample, guard = pass.
+
+## fs-patch alignment (2025-09-18)
+- Скопирован код из `contributing/packages/fs-patch` и доработан: удалил дубли импортов, реализовал allowCreate/allowDelete, файловые блокировки и diff3-merge с учётом CRLF/atomic перезаписи.
+- CLI `claude-fs-apply-patch` теперь поддерживает флаги `--allow-create`, `--allow-delete`, `--allow-conflict-merge`, `--lock`, `--lock-timeout`, `--lock-poll`, `--lock-stale`, `--no-atomic`, `--base`.
+- Документ `docs/rhpv.md` обновлён описанием новых возможностей (lock/diff3/normalize).
+- Тесты: `npm -w packages/fs-patch run build`, `node --test packages/fs-patch/dist/test/*.js` (все 3 теста зелёные после фикса временных директорий).
+- Smoke: `node dist/bin/claude-fs-apply-patch.js <tmp README> /tmp/fs-smoke.patch` → { ok: true, newHash } (ручная проверка патча).
+- `npm -w packages/cli-extras run build` всё ещё падает на импортах `@claude/fs-patch`/`@claude/permissions-linter` — ожидаем решить после завершения §3/§4 синхронизации всего монорепо.
+- `claude-guard` на diff → pass (findings=0).
+
+## Shell runner updates (2025-09-18)
+- Переписал `packages/shell-runner` с поддержкой безопасного окружения, временных скриптов, таймаутов и fallback-логики (`bash → pwsh → cmd` с запасным `powershell.exe`).
+- Обновлены run-helpers: новые опции `input`, `onStdout/onStderr`, `redact`, `capture`, `strictMode`, `safeEnv`, файловые блокировки не требуются.
+- Добавил тесты `order.test.ts` для проверки порядка fallback и уважения `SHELL_RUNNER_SHELL`.
+- Сборка/тесты: `npm -w packages/shell-runner run build`, `node --test packages/shell-runner/dist/test/*.js`.
+- Документация (`docs/ru/README-ru.md`) дополнена описанием fallback и переменной `SHELL_RUNNER_SHELL`.
+- `npm -w packages/cli-extras run build` всё ещё падает (отсутствуют типы `@claude/fs-patch`, `@claude/permissions-linter`), зафиксировано для следующих этапов.
+- `claude-guard` на diff после изменений → pass (findings=0).
