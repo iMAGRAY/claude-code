@@ -97,3 +97,10 @@
 - Документация (`docs/ru/README-ru.md`) дополнена описанием fallback и переменной `SHELL_RUNNER_SHELL`.
 - `npm -w packages/cli-extras run build` всё ещё падает (отсутствуют типы `@claude/fs-patch`, `@claude/permissions-linter`), зафиксировано для следующих этапов.
 - `claude-guard` на diff после изменений → pass (findings=0).
+
+## Stream checkpoints validation (2025-09-18)
+- Синхронизирован пакет `@claude/stream-checkpoints`: строгое сопоставление corrId/stepId, Ajv-схема и генерация типов через `json2ts` (см. `schema.json`, `schema.d.ts`).
+- CLI `claude-stream-validate` теперь валидирует и по схеме, и по логическим правилам.
+- Добавлены тесты (`validate.test.ts`, `steps.test.ts`) и schema-driven типы (`types.ts` → экспорт из `schema.d.ts`).
+- Команды: `npm run gen:types`, `npm -w packages/stream-checkpoints run build`, `node --test packages/stream-checkpoints/dist/test/*.js` — успешно.
+- `claude-guard` по diff — pass (findings=0).

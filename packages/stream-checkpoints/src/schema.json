@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://claude.ai/stream-checkpoint.schema.json",
+  "title": "CheckpointEvent",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["type", "stepId"],
+      "properties": {
+        "type": { "const": "stepStart" },
+        "stepId": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string" },
+        "ts": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["type", "stepId", "status"],
+      "properties": {
+        "type": { "const": "stepEnd" },
+        "stepId": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["ok", "error", "skipped"] },
+        "ts": { "type": "number" },
+        "error": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["type", "corrId", "tool"],
+      "properties": {
+        "type": { "const": "toolUse" },
+        "corrId": { "type": "string", "minLength": 1 },
+        "tool": { "type": "string", "minLength": 1 },
+        "args": {},
+        "ts": { "type": "number" },
+        "idempotent": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["type", "corrId", "exitCode"],
+      "properties": {
+        "type": { "const": "toolResult" },
+        "corrId": { "type": "string", "minLength": 1 },
+        "exitCode": { "type": "integer" },
+        "stdout": { "type": "string" },
+        "stderr": { "type": "string" },
+        "ts": { "type": "number" }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

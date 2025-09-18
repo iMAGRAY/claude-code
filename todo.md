@@ -53,12 +53,12 @@ All items must be executed in order unless explicitly tagged as parallel-safe. U
 - [x] 4.6 Draft PR summary referencing RFC-003 with platform coverage notes.
 
 ## 5. RFC-004 — Stream Checkpoints Validation (PR: "feat: strengthen stream checkpoint schema validation")
-- [ ] 5.1 Integrate `schema.d.ts` generation; ensure `npm run gen:types` produces deterministic output (watch for newline differences across OS).
-- [ ] 5.2 Merge stricter validation logic in `src/validate.ts` (step matching, corrId tracking) and confirm options parameter default remains backwards compatible.
-- [ ] 5.3 Ensure new tests (`test/steps.test.ts`) cover step/tool mismatch cases and pass under Node test runner.
-- [ ] 5.4 Update docs or package README to describe new validation guarantees and usage of `requireMatched` flag.
-- [ ] 5.5 Execute `npm -w packages/stream-checkpoints run build` and `node --test dist/test/*.js`.
-- [ ] 5.6 Document PR results referencing RFC-004.
+- [x] 5.1 Integrate `schema.d.ts` generation; ensure `npm run gen:types` produces deterministic output (watch for newline differences across OS).
+- [x] 5.2 Merge stricter validation logic in `src/validate.ts` (step matching, corrId tracking) and confirm options parameter default remains backwards compatible.
+- [x] 5.3 Ensure new tests (`test/steps.test.ts`) cover step/tool mismatch cases and pass under Node test runner.
+- [x] 5.4 Update docs or package README to describe new validation guarantees and usage of `requireMatched` flag.
+- [x] 5.5 Execute `npm -w packages/stream-checkpoints run build` and `node --test dist/test/*.js`.
+- [x] 5.6 Document PR results referencing RFC-004.
 
 ## 6. CLI Extras Surface Updates (PR: "feat: expose diagnostics commands in claude-extras")
 - [ ] 6.1 Wire newly added commands (`verify`, `doctor`) into CLI dispatcher (`src/index.ts`) and update help banner; remove dead imports.
