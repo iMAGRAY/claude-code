@@ -1,0 +1,25 @@
+{
+  "name": "claude-code-enterprise-addons",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*",
+    "packages/stream-checkpoints"
+  ],
+  "scripts": {
+    "build": "npm -ws run build",
+    "test": "npm -ws run test",
+    "gen:types": "json2ts -i packages/stream-checkpoints/src/schema.json -o packages/stream-checkpoints/src/schema.d.ts",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/node": "^20.8.0",
+    "fast-check": "^3.15.0",
+    "husky": "^9.0.11",
+    "json-schema-to-typescript": "^13.1.2",
+    "typescript": "^5.4.0"
+  }
+}

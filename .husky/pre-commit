@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+set -eu
+# enable pipefail when running under bash for stricter failure detection
+if [ -n "${BASH_VERSION:-}" ]; then
+  set -o pipefail
+fi
+npm run -ws -s build
+npm -ws -s run test
