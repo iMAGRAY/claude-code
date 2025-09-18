@@ -1,0 +1,17 @@
+{
+  "name": "@claude/fs-patch",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test dist/test/*.js || true"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "bin": {
+    "claude-fs-apply-patch": "dist/bin/claude-fs-apply-patch.js"
+  }
+}

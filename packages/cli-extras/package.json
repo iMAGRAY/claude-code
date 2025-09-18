@@ -1,0 +1,22 @@
+{
+  "name": "@claude/cli-extras",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "claude-extras": "dist/bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test dist/test/*.js || true"
+  },
+  "dependencies": {
+    "@claude/permissions-linter": "0.1.0",
+    "@claude/fs-patch": "0.1.0",
+    "@claude/shell-runner": "0.1.0",
+    "@claude/settings-schema": "0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

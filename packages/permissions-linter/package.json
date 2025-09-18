@@ -2,7 +2,8 @@
   "name": "@claude/permissions-linter",
   "version": "0.1.0",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "bin": {
     "claude-permissions-lint": "dist/bin/claude-permissions-lint.js",
     "claude-permissions-fix": "dist/bin/claude-permissions-fix.js",

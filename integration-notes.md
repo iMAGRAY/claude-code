@@ -104,3 +104,10 @@
 - Добавлены тесты (`validate.test.ts`, `steps.test.ts`) и schema-driven типы (`types.ts` → экспорт из `schema.d.ts`).
 - Команды: `npm run gen:types`, `npm -w packages/stream-checkpoints run build`, `node --test packages/stream-checkpoints/dist/test/*.js` — успешно.
 - `claude-guard` по diff — pass (findings=0).
+
+## CLI extras surface (2025-09-18)
+- Перенёс `@claude/cli-extras` из contributing: команды `verify` (агрегирует lint/coverage/risk/doctor) и `doctor` (окружение), TTL для `session start`, новые пути для bypass.
+- Обновил зависимости: CLI теперь ссылается на локальные пакеты (`@claude/fs-patch`, `@claude/permissions-linter`, `@claude/settings-schema`).
+- Исправил `verify` для работы с локальными workspace-бинарями (`npx --no-install`) и добавил fallback на прямой вызов скрипта `@claude/settings-schema`.
+- Smoke: `node packages/cli-extras/dist/bin/cli.js doctor`, `... session start --ttl 1m --ephemeral`, `... session cleanup`, `... verify examples/project/.claude/settings.json examples/tools.json` (все завершились успешно, verify вернул exit 0).
+- `npm -w packages/cli-extras run build` — успешно.

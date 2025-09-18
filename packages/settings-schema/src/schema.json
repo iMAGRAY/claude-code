@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Claude Code Settings",
+  "type": "object",
+  "properties": {
+    "bypassPermissions": {
+      "type": "boolean"
+    },
+    "disableBypassPermissionsMode": {
+      "enum": [
+        "enable",
+        "disable"
+      ]
+    },
+    "cleanupPeriodDays": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3650
+    },
+    "telemetry": {
+      "type": "object",
+      "properties": {
+        "disableTelemetry": {
+          "type": "boolean"
+        },
+        "disableErrorReporting": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "permissions": {
+      "type": "object",
+      "properties": {
+        "allow": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ruleItem"
+          }
+        },
+        "deny": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ruleItem"
+          }
+        },
+        "ask": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ruleItem"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true,
+  "definitions": {
+    "ruleItem": {
+      "type": "string",
+      "allOf": [
+        {
+          "not": {
+            "const": "Bash(*)"
+          }
+        },
+        {
+          "if": {
+            "pattern": "^Bash\\([^)]*\\*\\)$"
+          },
+          "then": {
+            "pattern": "^Bash\\([^:]*:[^)]*\\)$"
+          }
+        }
+      ]
+    }
+  }
+}

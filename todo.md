@@ -61,13 +61,13 @@ All items must be executed in order unless explicitly tagged as parallel-safe. U
 - [x] 5.6 Document PR results referencing RFC-004.
 
 ## 6. CLI Extras Surface Updates (PR: "feat: expose diagnostics commands in claude-extras")
-- [ ] 6.1 Wire newly added commands (`verify`, `doctor`) into CLI dispatcher (`src/index.ts`) and update help banner; remove dead imports.
-- [ ] 6.2 Review `cmdVerify` pipeline: ensure commands exist (`claude-permissions-coverage`, `risk`, `normalize`) after §2 integration; add timeout/error handling for missing binaries.
-- [ ] 6.3 Enhance `cmdDoctor`: confirm Windows compatibility (PowerShell invocation), ensure JSON output schema documented.
-- [ ] 6.4 Update `cmdSession` TTL logic and environment variable names; add unit tests if possible or manual acceptance notes.
-- [ ] 6.5 Extend docs/examples to teach new commands (`verify`, `doctor`, TTL, `CLAUDE_BYPASS_AUDIT_KEEP`).
-- [ ] 6.6 Run CLI smoke tests: `npx ts-node packages/cli-extras/src/index.ts doctor`, `session start --ttl 1m`, `verify` against sample config.
-- [ ] 6.7 Prepare PR summary enumerating UX changes and link to impacted docs.
+- [x] 6.1 Wire newly added commands (`verify`, `doctor`) into CLI dispatcher (`src/index.ts`) and update help banner; remove dead imports.
+- [x] 6.2 Review `cmdVerify` pipeline: ensure commands exist (`claude-permissions-coverage`, `risk`, `normalize`) after §2 integration; add timeout/error handling for missing binaries.
+- [x] 6.3 Enhance `cmdDoctor`: confirm Windows compatibility (PowerShell invocation), ensure JSON output schema documented.
+- [x] 6.4 Update `cmdSession` TTL logic and environment variable names; add unit tests if possible or manual acceptance notes.
+- [x] 6.5 Extend docs/examples to teach new commands (`verify`, `doctor`, TTL, `CLAUDE_BYPASS_AUDIT_KEEP`).
+- [x] 6.6 Run CLI smoke tests: `npx ts-node packages/cli-extras/src/index.ts doctor`, `session start --ttl 1m`, `verify` against sample config.
+- [x] 6.7 Prepare PR summary enumerating UX changes and link to impacted docs.
 
 ## 7. Docs & Policy Presets (PR sequence per contributing/PRs)
 - [ ] 7.1 PR-01 (`docs/security/SECURITY-PRESETS.md`, policy JSON examples):
