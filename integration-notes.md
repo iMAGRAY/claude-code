@@ -65,3 +65,17 @@
 - Блокирующие срабатывания (severity=block, confidence ≥ 0.85 или эскалации) запрещают отдавать изменения пользователю до устранения.
 - Добавлен к обязательному проверочному циклу вместе с `npm run build` и `npm test`.
 
+## Permissions linter sync (2025-09-18)
+- Сравнил `packages/permissions-linter` с contributing версией: новые бинарники (normalize), обновлённые lint-правила (`BASH_ANY`, `BASH_QUOTES`), gitignore-утилиты и risk анализатор.
+- Принято решение синхронизировать `src/`, `bin/`, `test/`, `tsconfig.json`, `package.json` из contributing.
+
+## Permissions linter verification (2025-09-18)
+- Sync выполнен из contributing (`src/`, `bin/`, `test/`, `package.json`, `tsconfig.json`), добавлен CLI `claude-permissions-risk` и экспорт `riskScore`.
+- Обновил `docs/getting-started/setup-wizard.md` разделом про новые предупреждения (`BASH_ANY`, `BASH_QUOTES`, `BASH_COLON`) и команду нормализации.
+- CLI extras: команда `permissions` теперь проксирует `lint|fix|show|coverage|normalize|risk` через бинарники, `dry-run` оставлен inline.
+- Сборка: `npm -w packages/permissions-linter run build` (Node v18.20.4) — успешно.
+- Тесты: `node --test packages/permissions-linter/dist/test/*.js` — все 7 тестов зелёные (включая property-based).
+- Быстрые проверки: `npx -w packages/permissions-linter claude-permissions-lint -- $(pwd)/examples/project/.claude/settings.json` и `claude-permissions-normalize` на временной копии — команды отработали успешно.
+- `npm -w packages/cli-extras run build` пока падает (не найдены типы `@claude/fs-patch`, `@claude/permissions-linter`); ожидаемо из-за незавершённых задач §3/§4.
+- `claude-guard` (empty diff while файлы не в git): pass, findings=0.
+- Черновик PR (RFC-001): добавлены диагностические коды Bash, gitignore matching, CLI `normalize/risk`, обновлены tests/docs; тесты (`npm -w packages/permissions-linter run build`, `node --test dist/test/*.js`), команды lint/normalize по sample, guard = pass.
